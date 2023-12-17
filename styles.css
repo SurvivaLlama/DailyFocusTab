@@ -1,57 +1,70 @@
-/* General styles for the body to center content and add a background color */
-body {
+/* Base styles to ensure the focus container is centered */
+body, html {
+    height: 100%;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafafa;
 }
 
-/* Styles for the reminder container */
-#reminder {
-    text-align: center;
-    background-color: white;
+/* Modern styling for the focus container */
+#focusContainer {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    min-width: 300px;
+    border-radius: 5px;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    margin: 20px;
 }
 
-/* Styling for the main heading */
+/* Enhancements for the heading */
 h1 {
     color: #333;
+    font-size: 24px;
     margin-bottom: 10px;
 }
 
-/* Styling for the reminder text */
-#reminderText {
-    color: #666;
+/* Style adjustments for the focus text */
+#focusText {
+    color: #555;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 
-/* Styling for input field */
-#newReminderInput {
+/* Input field styling for a modern look */
+#newFocusInput {
+    width: 100%;
     padding: 10px;
+    margin-bottom: 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    width: calc(100% - 22px);
-    margin-bottom: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-/* Styling for the 'Set Reminder' button */
-#setReminderButton {
+/* Stylish button with hover effect */
+#setFocusButton {
+    width: 100%;
     background-color: #4CAF50;
     color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-/* Hover effect for the button */
-#setReminderButton:hover {
+#setFocusButton:hover {
     background-color: #45a049;
 }
 
+/* Media query for responsive design */
+@media screen and (max-width: 600px) {
+    #focusContainer {
+        width: 80%;
+        margin: 10px;
+    }
+}
