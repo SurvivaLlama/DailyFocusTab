@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Daily Reminder New Tab",
+  "version": "1.0",
+  "description": "Displays a daily reminder on the new tab page.",
+  "permissions": [
+    "storage"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "background": {
+    "scripts": ["newtab.js"],
+    "persistent": false
+  },
+  "content_security_policy": "script-src 'self'; object-src 'self'"
+}
