@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var setFocusButton = document.getElementById('setFocusButton');
     var newFocusInput = document.getElementById('newFocusInput');
     var focusText = document.getElementById('focusText');
+    document.getElementById('newFocusInput').focus();
+    });
+
 
     // Event listener for the 'Set Focus' button click
     setFocusButton.addEventListener('click', function() {
@@ -40,3 +43,4 @@ function updateFocusDisplay() {
         focusText.textContent = data.dailyFocus || 'No daily focus set for today.';
     });
 }
+
