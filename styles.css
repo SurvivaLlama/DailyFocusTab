@@ -1,1 +1,57 @@
+/* General styles for the body to center content and add a background color */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Styles for the reminder container */
+#reminder {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* Styling for the main heading */
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Styling for the reminder text */
+#reminderText {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Styling for input field */
+#newReminderInput {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+}
+
+/* Styling for the 'Set Reminder' button */
+#setReminderButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the button */
+#setReminderButton:hover {
+    background-color: #45a049;
+}
 
