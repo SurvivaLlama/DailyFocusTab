@@ -1,30 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var setButton = document.getElementById('setReminderButton');
-    var inputField = document.getElementById('newReminderInput');
+    var setButton = document.getElementById('setFocusButton');
+    var inputField = document.getElementById('newFocusInput');
 
     // Event listener for the button click
-    setButton.addEventListener('click', setReminder);
+    setButton.addEventListener('click', setDailyFocus);
 
     // Event listener for pressing the Enter key in the input field
     inputField.addEventListener('keypress', function(event) {
         // Check if the Enter key is pressed
         if (event.key === 'Enter') {
-            setReminder();
+            setDailyFocus();
         }
     });
 
-    updateReminderDisplay();
+    updateDailyFocusDisplay();
 });
 
-function setReminder() {
-    var reminderText = document.getElementById('newReminderInput').value;
-    chrome.storage.local.set({ 'dailyReminder': reminderText }, function() {
-        updateReminderDisplay();
+function setDailyFocus() {
+    var dailyFocusText = document.getElementById('newFocusInput').value;
+    chrome.storage.local.set({ 'dailyFocus': dailyFocusText }, function() {
+        updateDailyFocusDisplay();
     });
 }
 
-function updateReminderDisplay() {
-    chrome.storage.local.get('dailyReminder', function(data) {
-        document.getElementById('reminderText').textContent = data.dailyReminder || 'No reminder set for today.';
+function updateDailyFocusDisplay() {
+    chrome.storage.local.get('dailyFocus', function(data) {
+        document.getElementById('focusText').textContent = data.dailyFocus || 'No daily focus set for today.';
     });
 }
