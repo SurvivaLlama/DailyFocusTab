@@ -1,25 +1,30 @@
-// Listen for DOMContentLoaded event to ensure HTML is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve the 'Set Reminder' button and add click event listener
     var setButton = document.getElementById('setReminderButton');
-    setButton.addEventListener('click', function() {
-        // Get the value from the input field
-        var reminderText = document.getElementById('newReminderInput').value;
-        // Save the reminder text in local storage
-        chrome.storage.local.set({ 'dailyReminder': reminderText }, function() {
-            // Update the display with the new reminder
-            updateReminderDisplay();
-        });
+    var inputField = document.getElementById('newReminderInput');
+
+    // Event listener for the button click
+    setButton.addEventListener('click', setReminder);
+
+    // Event listener for pressing the Enter key in the input field
+    inputField.addEventListener('keypress', function(event) {
+        // Check if the Enter key is pressed
+        if (event.key === 'Enter') {
+            setReminder();
+        }
     });
-    // Update the display when the page loads
+
     updateReminderDisplay();
 });
 
-// Function to update the reminder display
+function setReminder() {
+    var reminderText = document.getElementById('newReminderInput').value;
+    chrome.storage.local.set({ 'dailyReminder': reminderText }, function() {
+        updateReminderDisplay();
+    });
+}
+
 function updateReminderDisplay() {
-    // Retrieve the stored reminder text
     chrome.storage.local.get('dailyReminder', function(data) {
-        // Display the reminder text or a default message
         document.getElementById('reminderText').textContent = data.dailyReminder || 'No reminder set for today.';
     });
 }
