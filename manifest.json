@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Daily Reminder New Tab",
-  "version": "1.0",
+  "name": "Daily Focus Tab",
+  "version": "1.1",
   "description": "Displays a daily reminder on the new tab page.",
   "permissions": [
     "storage"
