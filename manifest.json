@@ -11,7 +11,7 @@
     "48": "https://raw.githubusercontent.com/SurvivaLlama/focus-extension/main/icons/icon-48.png",
     "96": "https://raw.githubusercontent.com/SurvivaLlama/focus-extension/main/icons/icon-96.png"
   },
-  "description": "Displays a daily reminder on the new tab page.",
+  "description": "Prompts you to focus on a single thing on the new tab page.",
   "permissions": [
     "storage"
   ],
