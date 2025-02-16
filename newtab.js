@@ -71,18 +71,22 @@ document.addEventListener('DOMContentLoaded', function() {
             const fireworks = document.getElementById('fireworks');
             fireworks.style.display = 'block';
             
-            // Create multiple firework elements
-            for(let i = 0; i < 5; i++) {
+            // Create many more firework elements
+            for(let i = 0; i < 20; i++) {
                 const newFirework = document.createElement('div');
                 newFirework.className = i % 2 === 0 ? 'before' : 'after';
+                newFirework.style.left = Math.random() * 100 + 'vw';
+                newFirework.style.animationDelay = (Math.random() * 2) + 's';
+                newFirework.style.backgroundColor = ['#f7b731', '#2d51a3', '#ff4757', '#7bed9f'][Math.floor(Math.random() * 4)];
                 fireworks.appendChild(newFirework);
             }
+            
+            chrome.storage.local.set({ 'dailyFocus': '' }, updateFocusDisplay);
             
             setTimeout(() => {
                 fireworks.style.display = 'none';
                 fireworks.innerHTML = '<div class="before"></div><div class="after"></div>';
-                chrome.storage.local.set({ 'dailyFocus': '' }, updateFocusDisplay);
-            }, 3000);
+            }, 5000);
         }, 2000);
     });
 
