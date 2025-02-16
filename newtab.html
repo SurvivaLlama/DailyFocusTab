@@ -1,127 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">  <head>
-    <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FocusTab</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="icon" type="image/png" href="icons/icon-48.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <meta name="description" content="A simple web app to help you stay focused on a single task.">
+<html lang="en">  <head>
+    <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusTab</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/png" href="icons/icon-48.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="A simple web app to help you stay focused on a single task.">
 </head>
 <body>
 
-    <div class="dark-mode-toggle-container">
-        <label class="switch" for="darkModeToggle" aria-label="Toggle dark mode">
-            <input type="checkbox" id="darkModeToggle">
-            <span class="slider round"></span>
-        </label>
-    </div>
+    <div class="dark-mode-toggle-container">
+        <label class="switch" for="darkModeToggle" aria-label="Toggle dark mode">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider round"></span>
+        </label>
+    </div>
 
-    <main id="focusContainer">
-        <div id="fireworks" class="pyro" style="display: none;">
-            <div class="before"></div>
-            <div class="after"></div>
-        </div>
+    <main id="focusContainer">
+        <div id="fireworks" class="pyro" style="display: none;">
+            <div class="before"></div>
+            <div class="after"></div>
+        </div>
 
-        <section id="focusArea" aria-labelledby="focusHeading">  <h1 id="focusHeading" class="sr-only">Focus Setting</h1> <div id="activeFocusArea" style="display: none;">
-                <p id="focusText" aria-live="polite"></p> <button id="completeFocusButton" class="complete-button">Complete</button>
-            </div>
+        <section id="focusArea" aria-labelledby="focusHeading">  <h1 id="focusHeading" class="sr-only">Focus Setting</h1> <div id="activeFocusArea" style="display: none;">
+                <p id="focusText" aria-live="polite"></p> <button id="completeFocusButton" class="complete-button">Complete</button>
+            </div>
 
-            <div id="setFocusArea">
-                <p class="anime-text">What should you focus on, senpai?</p>
-                <label for="newFocusInput" class="sr-only">Enter your focus</label>  <input type="text" id="newFocusInput" placeholder="Enter your focus" aria-describedby="focusInputDescription">
-                <p id="focusInputDescription" class="sr-only">Type your focus task and press Enter or click 'Set Focus'.</p>
-                <button id="setFocusButton">Set Focus</button>
-            </div>
-        </section>
-    </main>
+            <div id="setFocusArea">
+                <p class="anime-text">What should you focus on, senpai?</p>
+                <label for="newFocusInput" class="sr-only">Enter your focus</label>  <input type="text" id="newFocusInput" placeholder="Enter your focus" aria-describedby="focusInputDescription">
+                <p id="focusInputDescription" class="sr-only">Type your focus task and press Enter or click 'Set Focus'.</p>
+                <button id="setFocusButton">Set Focus</button>
+            </div>
+        </section>
+    </main>
 
-    <footer class="github-footer">
-        <a href="https://github.com/SurvivaLlama/" class="github-text" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </footer>
+    <footer class="github-footer">
+        <a href="https://github.com/SurvivaLlama/" class="github-text" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </footer>
 
-    <script src="newtab.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const focusContainer = document.getElementById('focusContainer');
-            const setFocusArea = document.getElementById('setFocusArea');
-            const activeFocusArea = document.getElementById('activeFocusArea');
-            const focusText = document.getElementById('focusText');
-            const setFocusButton = document.getElementById('setFocusButton');
-            const newFocusInput = document.getElementById('newFocusInput');
-            const completeFocusButton = document.getElementById('completeFocusButton');  // Renamed for clarity
-            const fireworks = document.getElementById('fireworks');
+    <script src="newtab.js"></script>
 
-            // --- Helper Functions ---
-
-            // Function to display fireworks
-            const showFireworks = () => {
-                fireworks.style.display = 'block';
-                setTimeout(() => {
-                    fireworks.style.display = 'none';
-                }, 3000);
-            };
-
-            // Function to set the focus
-            const setFocus = (focus) => {
-                localStorage.setItem('focus', focus);
-                focusText.textContent = focus;
-                setFocusArea.style.display = 'none';
-                activeFocusArea.style.display = 'block';
-            };
-
-            // Function to clear the focus
-            const clearFocus = () => {
-                localStorage.removeItem('focus');
-                activeFocusArea.style.display = 'none';
-                setFocusArea.style.display = 'block';
-            };
-
-
-            // --- Event Listeners ---
-
-            // Dark Mode Toggle
-            darkModeToggle.addEventListener('change', () => {
-                document.body.classList.toggle('dark-mode');  // Use document.body for consistency
-                focusContainer.classList.toggle('dark-mode-container');
-            });
-
-            // Set Focus Button Click
-            setFocusButton.addEventListener('click', () => {
-                const newFocus = newFocusInput.value.trim();
-                if (newFocus) {
-                    setFocus(newFocus);
-                    newFocusInput.value = ''; // Clear input
-                }
-            });
-
-            // Handle Enter key press in input field
-            newFocusInput.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter') {
-                    const newFocus = newFocusInput.value.trim();
-                    if (newFocus) {
-                        setFocus(newFocus);
-                        newFocusInput.value = ''; //Clear input.
-                    }
-                }
-            });
-
-            // Complete Focus Button Click
-            completeFocusButton.addEventListener('click', () => {
-                clearFocus();
-                showFireworks();
-            });
-
-            // --- Initialization ---
-
-            // Load saved focus on page load
-            const savedFocus = localStorage.getItem('focus');
-            if (savedFocus) {
-                setFocus(savedFocus);
-            }
-        });
-    </script>
 </body>
 </html>
