@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Element References ---
     let darkModeDebounceTimer;
@@ -7,12 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const setFocusButton = document.getElementById('setFocusButton');
     const newFocusInput = document.getElementById('newFocusInput');
     const focusText = document.getElementById('focusText');
-    const completeFocusButton = document.getElementById('completeFocusButton'); // Renamed for consistency
-    const fireworks = document.getElementById('fireworks'); // Assuming you still have fireworks
-
+    const completeFocusButton = document.getElementById('completeFocusButton');
+    const fireworks = document.getElementById('fireworks');
 
     // --- Helper Functions ---
-
     const showFireworks = () => {
         fireworks.style.display = 'block';
         setTimeout(() => {
@@ -29,12 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showActiveFocusArea = (focus) => {
         setFocusArea.style.display = 'none';
-        activeFocusArea.style.display = 'flex'; // Assuming you want flex display
+        activeFocusArea.style.display = 'flex';
         focusText.textContent = `Focus with all your power! ${focus}`;
     };
 
-    // --- Chrome Storage Functions (using Promises for better async handling) ---
-
+    // --- Storage Functions ---
     const getFromStorage = (key) => {
         return new Promise((resolve, reject) => {
             try {
@@ -48,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             } catch (e) {
-                // Fallback to localStorage if browser storage APIs are unavailable
                 resolve(localStorage.getItem(key));
             }
         });
@@ -67,14 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             } catch (e) {
-                // Fallback to localStorage if browser storage APIs are unavailable
                 localStorage.setItem(key, value);
                 resolve();
             }
         });
     };
 
-    // --- Update Focus Display Function ---
     const updateFocusDisplay = async () => {
         try {
             const dailyFocus = await getFromStorage('dailyFocus');
@@ -85,41 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error("Error getting focus from storage:", error);
-            // Handle the error appropriately (e.g., show a default state, display an error message)
-            showSetFocusArea(); // Fallback to the set focus area
+            showSetFocusArea();
         }
     };
 
-
     // --- Event Listeners ---
-
-    // Load and apply dark mode preference
-    getFromStorage('darkMode')
-        .then(darkMode => {
-            if (darkMode) {
-                document.body.classList.add('dark-mode');
-                darkModeToggle.checked = true;
-            }
-        })
-        .catch(error => {
-            console.error("Error loading dark mode preference:", error);
-            // Handle error, perhaps set a default
-        });
-
     // Dark Mode Toggle
     darkModeToggle.addEventListener('change', async () => {
         clearTimeout(darkModeDebounceTimer);
         darkModeDebounceTimer = setTimeout(async () => {
-            const isDarkMode = darkModeToggle.checked; // Use the checked state directly
-        document.body.classList.toggle('dark-mode', isDarkMode); // Use toggle with a boolean
-        try {
-            await setToStorage('darkMode', isDarkMode);
-        } catch (error) {
-            console.error("Error saving dark mode preference:", error);
-            // Handle the error (e.g., show a message to the user)
-        }
+            const isDarkMode = darkModeToggle.checked;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            try {
+                await setToStorage('darkMode', isDarkMode);
+            } catch (error) {
+                console.error("Error saving dark mode preference:", error);
+            }
+        }, 300);
     });
-
 
     // Set Focus Button Click
     setFocusButton.addEventListener('click', async () => {
@@ -127,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (focus) {
             try {
                 await setToStorage('dailyFocus', focus);
-                updateFocusDisplay();
+                await updateFocusDisplay();
             } catch (error) {
                 console.error("Error saving focus:", error);
             }
@@ -141,26 +119,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (focus) {
                 try {
                     await setToStorage('dailyFocus', focus);
-                    updateFocusDisplay();
+                    await updateFocusDisplay();
                 } catch (error) {
                     console.error("Error saving focus:", error);
                 }
             }
         }
     });
+
     // Complete Focus Button Click
-      completeFocusButton.addEventListener('click', async () => { //Use the renamed button
+    completeFocusButton.addEventListener('click', async () => {
         try {
-            await setToStorage('dailyFocus', ''); // Clear the focus
-            updateFocusDisplay();
-            showFireworks();  // Add fireworks back
+            await setToStorage('dailyFocus', '');
+            await updateFocusDisplay();
+            showFireworks();
         } catch (error) {
             console.error("Error clearing focus:", error);
         }
     });
 
-
-
     // --- Initialization ---
-    updateFocusDisplay(); // Initial display update
+    getFromStorage('darkMode')
+        .then(darkMode => {
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+        })
+        .catch(error => console.error("Error loading dark mode preference:", error));
+
+    updateFocusDisplay();
 });
