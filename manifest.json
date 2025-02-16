@@ -7,6 +7,10 @@
     "48": "icons/icon-48.png",
     "96": "icons/icon-96.png"
   },
+  "icons_url": {
+    "48": "https://raw.githubusercontent.com/SurvivaLlama/focus-extension/main/icons/icon-48.png",
+    "96": "https://raw.githubusercontent.com/SurvivaLlama/focus-extension/main/icons/icon-96.png"
+  },
   "description": "Displays a daily reminder on the new tab page.",
   "permissions": [
     "storage"

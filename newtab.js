@@ -62,12 +62,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    focusCheckbox.addEventListener('change', function() {
-        if (focusCheckbox.checked) {
+    let checkboxTimer;
+    let progressTimeout;
+    
+    focusCheckbox.addEventListener('mousedown', function() {
+        checkboxTimer = setTimeout(() => {
+            const fireworks = document.getElementById('fireworks');
+            fireworks.style.display = 'block';
             setTimeout(() => {
+                fireworks.style.display = 'none';
                 chrome.storage.local.set({ 'dailyFocus': '' }, updateFocusDisplay);
-            }, 1000);
-        }
+            }, 3000);
+        }, 2000);
+    });
+
+    focusCheckbox.addEventListener('mouseup', function() {
+        clearTimeout(checkboxTimer);
+    });
+
+    focusCheckbox.addEventListener('mouseleave', function() {
+        clearTimeout(checkboxTimer);
     });
 
     updateFocusDisplay();

@@ -1,3 +1,16 @@
+/* Anime-inspired styles and animations */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(-2deg); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255,105,180,0.5); }
+    50% { box-shadow: 0 0 20px rgba(255,105,180,0.8); }
+    100% { box-shadow: 0 0 5px rgba(255,105,180,0.5); }
+}
+
 /* Base styles to ensure the focus container is centered */
 body, html {
     height: 100vh;
@@ -196,6 +209,72 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* GitHub link styling */
+.github-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.github-link img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.github-link:hover img {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* Fireworks animation */
+.pyro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.pyro > .before, .pyro > .after {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 0 0 #fff;
+    animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+}
+
+.pyro > .after {
+    animation-delay: 1.25s, 1.25s, 1.25s;
+    animation-duration: 1.25s, 1.25s, 6.25s;
+}
+
+@keyframes bang {
+    to {
+        box-shadow: -70px -115.67px #00ff73, -28px -99.67px #ff00c8;
+    }
+}
+
+@keyframes gravity {
+    to {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+}
+
+@keyframes position {
+  0%, 19.9% { margin-top: 10%; margin-left: 40%; }
+  20%, 39.9% { margin-top: 40%; margin-left: 30%; }
+  40%, 59.9% { margin-top: 20%; margin-left: 70%; }
+  60%, 79.9% { margin-top: 30%; margin-left: 20%; }
+  80%, 99.9% { margin-top: 30%; margin-left: 80%; }
 }
 
 @media screen and (max-width: 600px) {
