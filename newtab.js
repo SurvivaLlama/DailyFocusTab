@@ -65,29 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let checkboxTimer;
     let progressTimeout;
     
-    focusCheckbox.addEventListener('mousedown', function() {
-        this.classList.add('completing');
-        checkboxTimer = setTimeout(() => {
-            const fireworks = document.getElementById('fireworks');
-            fireworks.style.display = 'block';
-            
-            // Create many more firework elements
-            for(let i = 0; i < 20; i++) {
-                const newFirework = document.createElement('div');
-                newFirework.className = i % 2 === 0 ? 'before' : 'after';
-                newFirework.style.left = Math.random() * 100 + 'vw';
-                newFirework.style.animationDelay = (Math.random() * 2) + 's';
-                newFirework.style.backgroundColor = ['#f7b731', '#2d51a3', '#ff4757', '#7bed9f'][Math.floor(Math.random() * 4)];
-                fireworks.appendChild(newFirework);
-            }
-            
-            chrome.storage.local.set({ 'dailyFocus': '' }, updateFocusDisplay);
-            
-            setTimeout(() => {
-                fireworks.style.display = 'none';
-                fireworks.innerHTML = '<div class="before"></div><div class="after"></div>';
-            }, 5000);
-        }, 2000);
+    focusCheckbox.addEventListener('click', function() {
+        chrome.storage.local.set({ 'dailyFocus': '' }, updateFocusDisplay);
     });
 
     focusCheckbox.addEventListener('mouseup', function() {
