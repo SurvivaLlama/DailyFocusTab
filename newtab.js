@@ -66,11 +66,21 @@ document.addEventListener('DOMContentLoaded', function() {
     let progressTimeout;
     
     focusCheckbox.addEventListener('mousedown', function() {
+        this.classList.add('completing');
         checkboxTimer = setTimeout(() => {
             const fireworks = document.getElementById('fireworks');
             fireworks.style.display = 'block';
+            
+            // Create multiple firework elements
+            for(let i = 0; i < 5; i++) {
+                const newFirework = document.createElement('div');
+                newFirework.className = i % 2 === 0 ? 'before' : 'after';
+                fireworks.appendChild(newFirework);
+            }
+            
             setTimeout(() => {
                 fireworks.style.display = 'none';
+                fireworks.innerHTML = '<div class="before"></div><div class="after"></div>';
                 chrome.storage.local.set({ 'dailyFocus': '' }, updateFocusDisplay);
             }, 3000);
         }, 2000);
