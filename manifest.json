@@ -25,7 +25,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "focustab@example.com",
+      "id": "{e471af6b-a6d9-47bf-b7de-fbb5a715f371}",
       "strict_min_version": "79.0"
     }
   }
