@@ -1,20 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     
-    const modeIcon = darkModeToggle.querySelector('.mode-icon');
-    
     // Load dark mode preference
     chrome.storage.local.get('darkMode', function(data) {
         if (data.darkMode) {
             document.body.classList.add('dark-mode');
-            modeIcon.textContent = '☀️';
+            darkModeToggle.checked = true;
         }
     });
     
-    darkModeToggle.addEventListener('click', function() {
+    darkModeToggle.addEventListener('change', function() {
         document.body.classList.toggle('dark-mode');
         const isDarkMode = document.body.classList.contains('dark-mode');
-        modeIcon.textContent = isDarkMode ? '☀️' : '🌙';
         chrome.storage.local.set({ 'darkMode': isDarkMode });
     });
     var setFocusButton = document.getElementById('setFocusButton');
