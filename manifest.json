@@ -4,7 +4,8 @@
   "version": "1.1",
   "description": "Displays a daily reminder on the new tab page.",
   "permissions": [
-    "storage"
+    "storage",
+    "tabs"
   ],
   "chrome_url_overrides": {
     "newtab": "newtab.html"
