@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function resetFocus() {
         focusText.style.display = 'block';
-        focusText.textContent = 'No daily focus set for today.';
+        focusText.textContent = 'What would you like to focus on today?';
         newFocusInput.value = '';
         focusCheckbox.checked = false;
     }
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateFocusDisplay() {
         chrome.storage.local.get('dailyFocus', function(data) {
-            focusText.textContent = data.dailyFocus || 'No daily focus set for today.';
+            focusText.textContent = data.dailyFocus || 'What would you like to focus on today?';
         });
     }
 
