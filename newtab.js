@@ -37,25 +37,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getFromStorage = (key) => {
         return new Promise((resolve, reject) => {
-            chrome.storage.local.get(key, (data) => {
-                if (chrome.runtime.lastError) {
-                    reject(chrome.runtime.lastError);
-                } else {
-                    resolve(data[key]);
-                }
-            });
+            try {
+                const storage = browser?.storage || chrome.storage;
+                storage.local.get(key, (data) => {
+                    const error = browser?.runtime?.lastError || chrome.runtime?.lastError;
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(data[key]);
+                    }
+                });
+            } catch (e) {
+                // Fallback to localStorage if browser storage APIs are unavailable
+                resolve(localStorage.getItem(key));
+            }
         });
     };
 
     const setToStorage = (key, value) => {
         return new Promise((resolve, reject) => {
-            chrome.storage.local.set({ [key]: value }, () => {
-                if (chrome.runtime.lastError) {
-                    reject(chrome.runtime.lastError);
-                } else {
-                    resolve();
-                }
-            });
+            try {
+                const storage = browser?.storage || chrome.storage;
+                storage.local.set({ [key]: value }, () => {
+                    const error = browser?.runtime?.lastError || chrome.runtime?.lastError;
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve();
+                    }
+                });
+            } catch (e) {
+                // Fallback to localStorage if browser storage APIs are unavailable
+                localStorage.setItem(key, value);
+                resolve();
+            }
         });
     };
 
