@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showActiveFocusArea(focus) {
         setFocusArea.style.display = 'none';
         activeFocusArea.style.display = 'flex';
-        focusText.textContent = focus;
+        focusText.textContent = `✧ Focus with all your power! ✧\n${focus}`;
         focusCheckbox.checked = false;
     }
 

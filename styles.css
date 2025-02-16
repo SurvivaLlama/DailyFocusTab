@@ -232,24 +232,32 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* GitHub link styling */
-.github-link {
+/* GitHub text styling */
+.github-text {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1000;
+    color: #FF69B4;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 2px 2px 4px rgba(255,105,180,0.3);
+    transition: all 0.3s ease;
 }
 
-.github-link img {
-    width: 32px;
-    height: 32px;
-    transition: transform 0.3s ease;
-    opacity: 0.7;
+.github-text:hover {
+    color: #FFB7B7;
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255,105,180,0.5);
 }
 
-.github-link:hover img {
-    transform: scale(1.2);
-    opacity: 1;
+.anime-text {
+    font-size: 1.4em;
+    color: #FF69B4;
+    text-shadow: 2px 2px 4px rgba(255,105,180,0.3);
+    font-weight: bold;
+    letter-spacing: 1px;
+    animation: float 3s ease-in-out infinite;
 }
 
 /* Fireworks animation -  Needs significant expansion for DBZ style */
