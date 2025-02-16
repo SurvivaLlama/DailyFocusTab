@@ -61,6 +61,8 @@ h1 {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    margin: 0; /*Added from changes*/
+    font-size: 1.2em; /*Added from changes*/
 }
 
 /* Input field styling for a modern look */
@@ -83,6 +85,7 @@ h1 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    display: none; /* Initially hidden */
 }
 
 #setFocusButton:hover {
@@ -100,6 +103,22 @@ h1 {
     text-decoration: line-through;
     color: #aaa;
 }
+
+#focusArea {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#activeFocusArea {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#setFocusArea {
+    text-align: center;
+}
+
 
 /* Media query for responsive design */
 .switch {
@@ -165,3 +184,41 @@ input:checked + .slider:before {
         flex-direction: column;
     }
 }
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const focusInput = document.getElementById('newFocusInput');
+    const setFocusButton = document.getElementById('setFocusButton');
+    const focusText = document.getElementById('focusText');
+    const focusCheckbox = document.getElementById('focusCheckbox');
+    const activeFocusArea = document.getElementById('activeFocusArea');
+    const setFocusArea = document.getElementById('setFocusArea');
+
+
+    let currentFocus = localStorage.getItem('currentFocus');
+
+    if (currentFocus) {
+      focusText.textContent = currentFocus;
+      activeFocusArea.style.display = 'block';
+      setFocusArea.style.display = 'none';
+    } else {
+      setFocusButton.style.display = 'block';
+      activeFocusArea.style.display = 'none';
+      setFocusArea.style.display = 'block';
+    }
+
+    setFocusButton.addEventListener('click', function() {
+      currentFocus = focusInput.value;
+      localStorage.setItem('currentFocus', currentFocus);
+      focusText.textContent = currentFocus;
+      activeFocusArea.style.display = 'block';
+      setFocusArea.style.display = 'none';
+      setFocusButton.style.display = 'none';
+    });
+
+
+    focusCheckbox.addEventListener('change', function() {
+      // Add your completed focus handling logic here.
+    });
+  });
+</script>

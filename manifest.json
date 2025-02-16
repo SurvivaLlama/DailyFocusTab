@@ -21,5 +21,9 @@
     "gecko": {
       "id": "dailyfocustab@example.com"
     }
-  }
+  },
+  "web_accessible_resources": [
+    "icons/icon-48.png",
+    "icons/icon-96.png"
+  ]
 }

@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Focus</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/png" href="icons/icon-48.png">
 </head>
 <body>
     <label class="switch">
@@ -12,11 +14,16 @@
     <div id="focusContainer">
         <h1>Your Daily Focus is:</h1>
         <div id="focusArea">
-            <input type="checkbox" id="focusCheckbox">
-            <p id="focusText">What would you like to focus on today?</p>
+            <div id="activeFocusArea" style="display: none;">
+                <input type="checkbox" id="focusCheckbox">
+                <p id="focusText"></p>
+            </div>
+            <div id="setFocusArea">
+                <p>What would you like to focus on today?</p>
+                <input type="text" id="newFocusInput" placeholder="Enter your focus">
+                <button id="setFocusButton">Set Focus</button>
+            </div>
         </div>
-        <input type="text" id="newFocusInput" placeholder="Enter your focus">
-        <button id="setFocusButton">Set Focus</button>
     </div>
     <script src="newtab.js"></script>
 </body>
