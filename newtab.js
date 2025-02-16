@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Element References ---
+    let darkModeDebounceTimer;
     const darkModeToggle = document.getElementById('darkModeToggle');
     const setFocusArea = document.getElementById('setFocusArea');
     const activeFocusArea = document.getElementById('activeFocusArea');
@@ -92,7 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dark Mode Toggle
     darkModeToggle.addEventListener('change', async () => {
-        const isDarkMode = darkModeToggle.checked; // Use the checked state directly
+        clearTimeout(darkModeDebounceTimer);
+        darkModeDebounceTimer = setTimeout(async () => {
+            const isDarkMode = darkModeToggle.checked; // Use the checked state directly
         document.body.classList.toggle('dark-mode', isDarkMode); // Use toggle with a boolean
         try {
             await setToStorage('darkMode', isDarkMode);

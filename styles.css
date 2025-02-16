@@ -125,7 +125,11 @@ h1 {
 /* --- Focus Text --- */
 #focusText {
   color: var(--primary-color);
-  font-size: var(--font-size-focus-text);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 20px 0;
   font-weight: 700;
   letter-spacing: 1px;
@@ -317,9 +321,8 @@ input:checked + .slider:before {
 }
 
 @keyframes float {
-  0% { transform: translateY(0px) rotate(-2deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
-  100% { transform: translateY(0px) rotate(-2deg); }
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
 }
 
 /* --- Fireworks (Placeholder, needs more work) --- */
