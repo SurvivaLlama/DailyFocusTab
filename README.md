@@ -12,11 +12,11 @@ Transform your new tab into a daily productivity booster with **DailyFocusTab**!
 
 1. **Set Your Focus**: Input your focus in the provided text box and click "Set Focus".
 2. **View Your Focus**: When you open a new tab, you will see your set focus displayed prominently.
-3. **Interact with Charm**: Engage with the anime-inspired button effects and text styles (for example: "What should you focus on, senpai? (｀_´)ゞ").
+3. **Interact with Charm**: Engage with the anime-inspired button effects and text styles (for example: "What should you focus on, senpai?
 
 ## Example:
 
-When you have an active focus, the prompt will change to "✧ Focus with all your power! ✧" to encourage your productivity!
+When you have an active focus, the prompt will change to "Focus with all your power!" to encourage your productivity!
 
 ## How to Contribute:
 
